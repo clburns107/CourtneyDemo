@@ -12,8 +12,13 @@ public class CustomerController {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/customer")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Greeting(counter.incrementAndGet(),
-                String.format(template, name));
+    public String listCustomers(){
+        return "List of all the customers";
     }
+
+    @RequestMapping("/customer/1")
+    public String customerDetails(){
+        return "One of the customers";
+    }
+
 }
