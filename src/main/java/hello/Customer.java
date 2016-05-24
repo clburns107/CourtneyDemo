@@ -2,15 +2,21 @@ package hello;
 
 public class Customer {
 
-    private Long id;
+    private int id;
     private String firstName;
     private String lastName;
 
-    public Long getId() {
+    public Customer(String firstName, String lastName, int id){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

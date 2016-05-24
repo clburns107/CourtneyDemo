@@ -4,21 +4,28 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+import java.util.ArrayList;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @RestController
+@RequestMapping(value = "/")
 public class CustomerController {
+    private List<Customer> customers;
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
-
-    @RequestMapping("/customer")
-    public String listCustomers(){
-        return "List of all the customers";
+    public CustomerController(){
+        customers = new ArrayList<>();
+        customers.add(new Customer("Jon", "White", 1));
+        customers.add(new Customer("Courtney", "Burns", 2));
+        customers.add(new Customer("Taylor", "White", 3));
     }
 
-    @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET)
-    public String getId(@PathVariable("id")){
-
+    @RequestMapping(value = "/customer", method = RequestMethod.GET)
+    public List<Customer> getAll(){
+        return customers;
     }
+
+
 
 }
