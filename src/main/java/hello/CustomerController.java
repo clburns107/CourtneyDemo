@@ -1,31 +1,48 @@
 package hello;
 
 import java.util.concurrent.atomic.AtomicLong;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.ArrayList;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @RestController
 @RequestMapping(value = "/")
 public class CustomerController {
-    private List<Customer> customers;
+    public List<Customer> createCustomerList()
+    {
+        Customer jenniferCustomer=new Customer("Jennifer", "Aniston", 1L);
+        Customer mattCustomer=new Customer("Matt", "LeBlanc", 2L);
+        Customer davidCustomer=new Customer("David", "Schwimer", 3L);
+        Customer courtneyCustomer=new Customer("Courtney", "Cox", 4L);
 
-    public CustomerController(){
-        customers = new ArrayList<>();
-        customers.add(new Customer("Jon", "White", 1L));
-        customers.add(new Customer("Courtney", "Burns", 2L));
-        customers.add(new Customer("Taylor", "White", 3L));
+        List<Customer> listOfCustomers = new ArrayList<Customer>();
+        listOfCustomers.add(jenniferCustomer);
+        listOfCustomers.add(mattCustomer);
+        listOfCustomers.add(davidCustomer);
+        listOfCustomers.add(courtneyCustomer);
+        return listOfCustomers;
     }
 
     @RequestMapping(value = "/customer", method = RequestMethod.GET)
-    public List<Customer> getAll(){
-        return customers;
+    public List<Customer> getCustomers()
+    {
+        List<Customer> listOfCustomers = new ArrayList<Customer>();
+        listOfCustomers=createCustomerList();
+        return listOfCustomers;
     }
 
+    @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET)
+    public Customer getCustomerById(@PathVariable long id) {
+        List<Customer> listOfCustomers = new ArrayList<Customer>();
+        listOfCustomers = createCustomerList();
 
-
+        for (Customer customer : listOfCustomers) {
+            if (customer.getId() == id)
+                return customer;
+        }
+        return null;
+    }
 }
