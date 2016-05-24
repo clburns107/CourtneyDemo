@@ -16,9 +16,9 @@ public class CustomerController {
 
     public CustomerController(){
         customers = new ArrayList<>();
-        customers.add(new Customer("Jon", "White", 1));
-        customers.add(new Customer("Courtney", "Burns", 2));
-        customers.add(new Customer("Taylor", "White", 3));
+        customers.add(new Customer("Jon", "White", 1L));
+        customers.add(new Customer("Courtney", "Burns", 2L));
+        customers.add(new Customer("Taylor", "White", 3L));
     }
 
     @RequestMapping(value = "/customer", method = RequestMethod.GET)
