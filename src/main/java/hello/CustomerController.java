@@ -16,9 +16,9 @@ public class CustomerController {
         return "List of all the customers";
     }
 
-    @RequestMapping("/customer/1")
-    public String customerDetails(){
-        return "One of the customers";
+    @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET)
+    public String getId(@PathVariable("id")){
+
     }
 
 }
