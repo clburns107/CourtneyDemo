@@ -1,14 +1,11 @@
 package Woodmen.Application;
 
 import java.util.List;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 
 @RestController
 @RequestMapping(value = "/")
@@ -27,8 +24,8 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customer", method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
-        return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+    public Customer addCustomer(@RequestBody Customer customer) {
+        return customerService.addCustomer(customer);
     }
 
     @RequestMapping(value = "/customer", method = RequestMethod.PUT, headers = "Accept=application/json")
