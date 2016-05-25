@@ -1,0 +1,70 @@
+package Woodmen.Application;
+
+import java.util.List;
+//import Woodmen.Application.model.Customer;
+//import Woodmen.Application.service.CustomerService;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.ArrayList;
+
+@RestController
+@RequestMapping(value = "/")
+public class CustomerController {
+    CustomerService customerService = new CustomerService();
+
+    public List<Customer> createCustomerList() {
+
+        Customer jenniferCustomer=new Customer("Jennifer", "Aniston", 1);
+        Customer mattCustomer=new Customer("Matt", "LeBlanc", 2);
+        Customer davidCustomer=new Customer("David", "Schwimer", 3);
+        Customer courtneyCustomer=new Customer("Courtney", "Cox", 4);
+
+        List<Customer> listOfCustomers = new ArrayList<Customer>();
+        listOfCustomers.add(jenniferCustomer);
+        listOfCustomers.add(mattCustomer);
+        listOfCustomers.add(davidCustomer);
+        listOfCustomers.add(courtneyCustomer);
+        return listOfCustomers;
+    }
+
+    @RequestMapping(value = "/customer", method = RequestMethod.GET)
+    public List<Customer> getCustomers() {
+        List<Customer> listOfCustomers = new ArrayList<Customer>();
+        listOfCustomers=createCustomerList();
+        return listOfCustomers;
+    }
+
+    @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET)
+    public Customer getCustomerById(@PathVariable int id) {
+        List<Customer> listOfCustomers = new ArrayList<Customer>();
+        listOfCustomers = createCustomerList();
+
+        for (Customer customer : listOfCustomers)
+        {
+            if (customer.getId() == id)
+                return customer;
+        }
+        return null;
+    }
+
+    @RequestMapping(value = "/customer", method = RequestMethod.POST)
+    public Customer addCustomer(@RequestBody Customer customer) {
+        return customerService.addCustomer(customer);
+
+    }
+
+    @RequestMapping(value = "/customer", method = RequestMethod.PUT)
+    public Customer updateCustomer(@RequestBody Customer customer) {
+        return customerService.updateCustomer(customer);
+
+    }
+
+    @RequestMapping(value = "/customer/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
+    public void deleteCustomer(@PathVariable("id") int id) {
+        customerService.deleteCustomer(id);
+
+    }
+}

@@ -1,4 +1,4 @@
-package hello;
+package Woodmen.Application;
 
 public class Greeting {
 

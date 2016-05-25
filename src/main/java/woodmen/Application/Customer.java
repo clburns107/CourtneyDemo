@@ -1,22 +1,22 @@
-package hello;
+package Woodmen.Application;
 
 public class Customer {
 
-    private Long id;
+    private int id;
     private String firstName;
     private String lastName;
 
-    public Customer(String firstName, String lastName, Long id){
+    public Customer(String firstName, String lastName, int id){
         this.firstName = firstName;
         this.lastName = lastName;
         this.id = id;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
