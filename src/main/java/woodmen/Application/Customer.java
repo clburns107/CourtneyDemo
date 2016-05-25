@@ -6,6 +6,9 @@ public class Customer {
     private String firstName;
     private String lastName;
 
+    public Customer() {
+    }
+
     public Customer(String firstName, String lastName, Long id){
         this.firstName = firstName;
         this.lastName = lastName;
