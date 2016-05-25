@@ -15,23 +15,23 @@ import java.util.ArrayList;
 public class CustomerController {
     CustomerService customerService = new CustomerService();
 
-    @RequestMapping(value = "/customer", method = RequestMethod.GET)
+    @RequestMapping(value = "/customer", method = RequestMethod.GET, headers = "Accept=application/json")
     public List<Customer> getCustomers() {
         List<Customer> listOfCustomers = customerService.getAllCustomers();
         return listOfCustomers;
     }
 
-    @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
     public Customer getCustomerById(@PathVariable int id) {
         return customerService.getCustomer(id);
     }
 
-    @RequestMapping(value = "/customer", method = RequestMethod.POST)
+    @RequestMapping(value = "/customer", method = RequestMethod.POST, headers = "Accept=application/json")
     public Customer addCustomer(@RequestBody Customer customer) {
         return customerService.addCustomer(customer);
     }
 
-    @RequestMapping(value = "/customer", method = RequestMethod.PUT)
+    @RequestMapping(value = "/customer", method = RequestMethod.PUT, headers = "Accept=application/json")
     public Customer updateCustomer(@RequestBody Customer customer) {
         return customerService.updateCustomer(customer);
     }

@@ -22,9 +22,9 @@ public class CustomerService {
 
 
             customerIdMap.put(1,jenniferCustomer);
-            customerIdMap.put(4,mattCustomer);
+            customerIdMap.put(2,mattCustomer);
             customerIdMap.put(3,davidCustomer);
-            customerIdMap.put(2,courtneyCustomer);
+            customerIdMap.put(4,courtneyCustomer);
         }
     }
 
