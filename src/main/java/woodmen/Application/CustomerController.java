@@ -1,14 +1,14 @@
 package Woodmen.Application;
 
 import java.util.List;
-//import Woodmen.Application.model.Customer;
-//import Woodmen.Application.service.CustomerService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.ArrayList;
+
 
 @RestController
 @RequestMapping(value = "/")
@@ -22,13 +22,13 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
-    public Customer getCustomerById(@PathVariable int id) {
+    public Customer getCustomerById(@PathVariable Long id) {
         return customerService.getCustomer(id);
     }
 
     @RequestMapping(value = "/customer", method = RequestMethod.POST, headers = "Accept=application/json")
-    public Customer addCustomer(@RequestBody Customer customer) {
-        return customerService.addCustomer(customer);
+    public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
+        return new ResponseEntity<Customer>(customer, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/customer", method = RequestMethod.PUT, headers = "Accept=application/json")
@@ -37,7 +37,7 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customer/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
-    public void deleteCustomer(@PathVariable("id") int id) {
+    public void deleteCustomer(@PathVariable("id") Long id) {
         customerService.deleteCustomer(id);
     }
 }

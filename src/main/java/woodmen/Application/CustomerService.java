@@ -1,11 +1,12 @@
 package Woodmen.Application;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.List;
 
 public class CustomerService {
 
-    static HashMap<Integer,Customer> customerIdMap=getCustomerIdMap();
+    static HashMap<Long,Customer> customerIdMap=getCustomerIdMap();
 
 
     public CustomerService() {
@@ -13,18 +14,18 @@ public class CustomerService {
 
         if(customerIdMap==null)
         {
-            customerIdMap=new HashMap<Integer,Customer>();
+            customerIdMap=new HashMap<Long,Customer>();
             // Creating some objects of Customer while initializing
-            Customer jenniferCustomer=new Customer("Jennifer", "Aniston", 1);
-            Customer mattCustomer=new Customer("Matt", "LeBlanc", 2);
-            Customer davidCustomer=new Customer("David", "Schwimer", 3);
-            Customer courtneyCustomer=new Customer("Courtney", "Cox", 4);
+            Customer jenniferCustomer=new Customer("Jennifer", "Aniston", 1L);
+            Customer mattCustomer=new Customer("Matt", "LeBlanc", 2L);
+            Customer davidCustomer=new Customer("David", "Schwimer", 3L);
+            Customer courtneyCustomer=new Customer("Courtney", "Cox", 4L);
 
 
-            customerIdMap.put(1,jenniferCustomer);
-            customerIdMap.put(2,mattCustomer);
-            customerIdMap.put(3,davidCustomer);
-            customerIdMap.put(4,courtneyCustomer);
+            customerIdMap.put(1L,jenniferCustomer);
+            customerIdMap.put(2L,mattCustomer);
+            customerIdMap.put(3L,davidCustomer);
+            customerIdMap.put(4L,courtneyCustomer);
         }
     }
 
@@ -34,7 +35,7 @@ public class CustomerService {
         return customers;
     }
 
-    public Customer getCustomer(int id)
+    public Customer getCustomer(long id)
     {
         Customer customer= customerIdMap.get(id);
         return customer;
@@ -54,19 +55,19 @@ public class CustomerService {
         return customer;
 
     }
-    public void deleteCustomer(int id)
+    public void deleteCustomer(long id)
     {
         customerIdMap.remove(id);
     }
 
-    public static HashMap<Integer, Customer> getCustomerIdMap() {
+    public static HashMap<Long, Customer> getCustomerIdMap() {
         return customerIdMap;
     }
 
     // Utility method to get max id
-    public static int getMaxId()
-    {   int max=0;
-        for (int id:customerIdMap.keySet()) {
+    public static long getMaxId()
+    {   long max=0;
+        for (long id:customerIdMap.keySet()) {
             if(max<=id)
                 max=id;
 
