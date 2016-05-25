@@ -18,14 +18,17 @@ public class CustomerService {
             // Creating some objects of Customer while initializing
             Customer jenniferCustomer=new Customer("Jennifer", "Aniston", 1L);
             Customer mattCustomer=new Customer("Matt", "LeBlanc", 2L);
-            Customer davidCustomer=new Customer("David", "Schwimer", 3L);
+            Customer davidCustomer=new Customer("David", "Schwimmer", 3L);
             Customer courtneyCustomer=new Customer("Courtney", "Cox", 4L);
+            Customer matthewCustomer=new Customer("Matthew", "Perry", 5L);
+
 
 
             customerIdMap.put(1L,jenniferCustomer);
             customerIdMap.put(2L,mattCustomer);
             customerIdMap.put(3L,davidCustomer);
             customerIdMap.put(4L,courtneyCustomer);
+            customerIdMap.put(5L,matthewCustomer);
         }
     }
 
